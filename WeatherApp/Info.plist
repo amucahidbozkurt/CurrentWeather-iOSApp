@@ -66,6 +66,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Uygulama kullanirken lokasyon bilgisi cekilecek</string>
+	<string>This app needs your current location</string>
 </dict>
 </plist>
