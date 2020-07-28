@@ -21,7 +21,7 @@ class SplashVC: UIViewController {
         do {
             let reachability = try Reachability()
             let connection = reachability.connection
-            if connection == .unavailable || connection == .unavailable {
+            if connection == .unavailable {
                 let alert = UIAlertController(title: "Error", message: "Check your internet connection.", preferredStyle: .alert)
                 self.present(alert, animated: true, completion: nil)
             } else {

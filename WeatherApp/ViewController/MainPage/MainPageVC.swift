@@ -32,7 +32,18 @@ class MainPageVC: UIViewController, CLLocationManagerDelegate {
         
         locationStartUpdating()
         getCurrentDate()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(appCameFromBackground),
+                                               name: Notification.Name.init(UIApplication.willEnterForegroundNotification.rawValue),
+                                               object: nil)
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if CLLocationManager.authorizationStatus() == .denied {
+            showLocationAlert()
+        }
     }
     
     private func getWeatherData(byLatKey: String, byLonKey: String) {
@@ -72,6 +83,30 @@ class MainPageVC: UIViewController, CLLocationManagerDelegate {
         lblDate.text = result
     }
     
+    @objc
+    private func appCameFromBackground() {
+        if CLLocationManager.authorizationStatus() == .denied {
+            showLocationAlert()
+        }
+    }
+    
+    private func showLocationAlert() {
+        let alertController = UIAlertController(title: "Error", message: "This app needs your current location. Please, go to settings and allow location.", preferredStyle: .alert)
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                    print("Settings opened: \(success)")
+                })
+            }
+        }
+        alertController.addAction(settingsAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     private func locationStartUpdating() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -85,8 +120,17 @@ class MainPageVC: UIViewController, CLLocationManagerDelegate {
             let userLocation = CLLocationCoordinate2D(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude)
             getWeatherData(byLatKey: String(userLocation.latitude), byLonKey: String(userLocation.longitude))
         }
-        
     }
-
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .denied:
+            showLocationAlert()
+            print("Kullanıcı uygulama içi kullanımını reddetti ayarlar kısmındaki konum izni devre dışı kaldı")
+        default:
+            print("error")
+        }
+    }
+    
 }
 
