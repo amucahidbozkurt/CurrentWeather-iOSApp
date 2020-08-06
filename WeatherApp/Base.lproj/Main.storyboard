@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="K5L-4R-aWX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TfF-el-SNi">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -31,7 +31,7 @@
             </objects>
             <point key="canvasLocation" x="-635" y="119"/>
         </scene>
-        <!--Main PageVC-->
+        <!--Weather-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="MainPageVC" id="BYZ-38-t0r" customClass="MainPageVC" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -131,6 +131,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Weather" image="cloud.sun" catalog="system" id="yet-J7-0mb"/>
                     <connections>
                         <outlet property="lblDate" destination="VqP-tD-JJu" id="cS4-7o-3cY"/>
                         <outlet property="lblHumidity" destination="DWk-JM-2Lw" id="mBb-uQ-uNq"/>
@@ -142,10 +143,86 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1086" y="-212"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="49J-au-cpV">
+            <objects>
+                <viewController id="gdi-UQ-d78" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bLf-18-yk2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Cn3-fe-SAL">
+                                <rect key="frame" x="54" y="114" width="307" height="82"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="82" id="Ul0-5q-oQY"/>
+                                </constraints>
+                            </imageView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3TB-FS-4f5">
+                                <rect key="frame" x="90" y="291" width="235" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="°C"/>
+                                    <segment title="°F"/>
+                                </segments>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Scale types" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3d-in-aMi">
+                                <rect key="frame" x="162" y="262" width="93" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" red="0.2846928239" green="0.54393458370000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date types" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ecQ-6O-lS8">
+                                <rect key="frame" x="164" y="362" width="87" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" red="0.2846928239" green="0.54393458370000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8uj-Mn-KXZ">
+                                <rect key="frame" x="0.0" y="391" width="414" height="84"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" hint="hint" label="Date"/>
+                            </pickerView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Cn3-fe-SAL" firstAttribute="leading" secondItem="OxQ-zF-LFx" secondAttribute="leading" constant="54" id="4s6-mZ-Bh0"/>
+                            <constraint firstItem="OxQ-zF-LFx" firstAttribute="trailing" secondItem="Cn3-fe-SAL" secondAttribute="trailing" constant="53" id="N36-oW-Z76"/>
+                            <constraint firstItem="Cn3-fe-SAL" firstAttribute="top" secondItem="OxQ-zF-LFx" secondAttribute="top" constant="70" id="izI-6E-EGV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="OxQ-zF-LFx"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="Olo-hc-N2m"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ACZ-rU-BSv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1086.9565217391305" y="450"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="WRw-gO-xrS">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="TfF-el-SNi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jDF-A8-eb1">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="u2s-au-cIl"/>
+                        <segue destination="gdi-UQ-d78" kind="relationship" relationship="viewControllers" id="4X0-ct-BlU"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hOb-1e-MJW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="137.68115942028987" y="118.52678571428571"/>
         </scene>
     </scenes>
     <resources>
+        <image name="cloud.sun" catalog="system" width="128" height="88"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
         <image name="logo" width="236" height="63"/>
         <image name="whiteLogo" width="236" height="63"/>
     </resources>

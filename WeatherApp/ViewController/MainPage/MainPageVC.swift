@@ -126,9 +126,9 @@ class MainPageVC: UIViewController, CLLocationManagerDelegate {
         switch status {
         case .denied:
             showLocationAlert()
-            print("Kullanıcı uygulama içi kullanımını reddetti ayarlar kısmındaki konum izni devre dışı kaldı")
+            Logger.debug("Kullanıcı uygulama içi kullanımını reddetti ayarlar kısmındaki konum izni devre dışı kaldı")
         default:
-            print("error")
+            Logger.debug("error")
         }
     }
     
