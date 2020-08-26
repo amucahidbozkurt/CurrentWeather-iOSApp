@@ -31,7 +31,6 @@ class MainPageVC: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         
         locationStartUpdating()
-        getCurrentDate()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(appCameFromBackground),
                                                name: Notification.Name.init(UIApplication.willEnterForegroundNotification.rawValue),
@@ -44,6 +43,7 @@ class MainPageVC: UIViewController, CLLocationManagerDelegate {
         if CLLocationManager.authorizationStatus() == .denied {
             showLocationAlert()
         }
+        getCurrentDate()
     }
     
     private func getWeatherData(byLatKey: String, byLonKey: String) {
@@ -78,7 +78,11 @@ class MainPageVC: UIViewController, CLLocationManagerDelegate {
     private func getCurrentDate() {
         let date = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE, MMM d, yyyy"
+        if let selectedValue = UserDefaults.standard.string(forKey: "SelectedDateFormat"), selectedValue != "" {
+            formatter.dateFormat = selectedValue
+        } else {
+            formatter.dateFormat = "EEEE, MMM d, yyyy"
+        }
         let result = formatter.string(from: date)
         lblDate.text = result
     }
@@ -99,7 +103,7 @@ class MainPageVC: UIViewController, CLLocationManagerDelegate {
 
             if UIApplication.shared.canOpenURL(settingsUrl) {
                 UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                    print("Settings opened: \(success)")
+                    Logger.debug("Settings opened: \(success)")
                 })
             }
         }
